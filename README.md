@@ -22,7 +22,7 @@ This repo serves as:
 - Web Application Hacking  
 - Network Penetration Testing  
 - Privilege Escalation (Windows & Linux)  
-- BurpSuite Repeater / Proxy Techniques  
+- BurpSuite  
 - Nmap, Wireshark, Hydra, Metasploit  
 - Exploiting CVEs  
 - OWASP Top 10 
