@@ -49,6 +49,6 @@ Common failures include:
 - Short log retention periods.
 - Storing logs in locations where attackers can tamper with them.
 
-[**Insecure Data Handling**](OWASP%20Top%2010%202025%20IAAA%20Failures/Insecure%20Data%20Handling%202bae22259453802b86f7cd4bc0468f2e.md)
+<a href="https://github.com/OnyedikachiO/TryHackMe_Projects/blob/main/Insecure%20Data%20Handling.md">Insecure Data Handling</a>
 
-[**Application Design Flaws**](OWASP%20Top%2010%202025%20IAAA%20Failures/Application%20Design%20Flaws%202b8e222594538083a3cef6e0e5b1dcf8.md)
+<a href="https://github.com/OnyedikachiO/TryHackMe_Projects/blob/main/Application%20Design%20Flaws.md">Application Design Flaws</a>
