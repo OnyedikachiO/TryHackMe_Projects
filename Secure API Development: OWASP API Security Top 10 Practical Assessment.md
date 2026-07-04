@@ -360,6 +360,12 @@ The exercise reinforced several important security principles:
 * Never trust client-supplied data.
 * Enforce authorization checks on every request.
 * Validate authentication mechanisms thoroughly.
+
+---
+
+## Disclaimer
+
+This research was conducted in an authorized laboratory environment for educational, defensive, and security research purposes only.
 * Expose only the minimum required data.
 * Implement rate limiting and resource controls.
 * Validate user roles on the server side.
