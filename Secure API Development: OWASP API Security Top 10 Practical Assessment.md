@@ -360,14 +360,14 @@ The exercise reinforced several important security principles:
 * Never trust client-supplied data.
 * Enforce authorization checks on every request.
 * Validate authentication mechanisms thoroughly.
+* Expose only the minimum required data.
+* Implement rate limiting and resource controls.
+* Validate user roles on the server side.
+
+Understanding and testing these vulnerabilities provides practical experience in identifying and mitigating some of the most common and impactful API security risks affecting modern applications.
 
 ---
 
 ## Disclaimer
 
 This research was conducted in an authorized laboratory environment for educational, defensive, and security research purposes only.
-* Expose only the minimum required data.
-* Implement rate limiting and resource controls.
-* Validate user roles on the server side.
-
-Understanding and testing these vulnerabilities provides practical experience in identifying and mitigating some of the most common and impactful API security risks affecting modern applications.
