@@ -303,16 +303,6 @@ This assessment demonstrated that seemingly minor implementation decisions can i
 * Vulnerability Assessment
 * Security Reporting
 
----
-
-# Resume Project Summary
-
-**Authentication Security Assessment Lab | User Enumeration & Password Reset Analysis**
-
-* Conducted an authentication security assessment in a controlled lab environment, identifying user enumeration vulnerabilities through verbose error messages.
-* Developed Python automation scripts to enumerate valid user accounts via differential authentication responses.
-* Assessed password reset workflows and demonstrated exploitation of predictable reset tokens using Burp Suite Intruder and Crunch.
-* Produced remediation recommendations covering secure token generation, error handling, rate limiting, and authentication hardening.
 
 ---
 ## Disclaimer
