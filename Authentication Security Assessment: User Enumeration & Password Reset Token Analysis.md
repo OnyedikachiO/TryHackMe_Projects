@@ -1,7 +1,7 @@
 
 # Authentication Security Assessment: User Enumeration via Verbose Errors and Password Reset Token Analysis
 
-## Executive Summary
+## Overview
 
 This project demonstrates the security risks associated with verbose authentication error messages and weak password reset implementations. During the assessment, I identified user enumeration vulnerabilities caused by inconsistent login error responses and analyzed a password reset mechanism that relied on predictable numeric tokens.
 
