@@ -6,41 +6,45 @@
 
 ## About
 
-This repository documents practical penetration testing exercises performed across various cybersecurity labs and Capture The Flag (CTF) environments.
+This repository documents practical penetration testing exercises performed across cybersecurity labs, Capture The Flag (CTF) environments, and intentionally vulnerable applications.
 
-Each project demonstrates a structured offensive security methodology including:
+The projects demonstrate a structured offensive security methodology that spans the complete penetration testing lifecycle—from reconnaissance and attack surface mapping to exploitation, security analysis, and remediation.
 
-- Reconnaissance
-- Enumeration
-- Vulnerability Discovery
-- Exploitation
-- Privilege Escalation
-- Post-Exploitation
-- Security Analysis
-- Mitigation Recommendations
-
-The objective of this repository is to showcase practical penetration testing skills while following responsible disclosure and ethical hacking practices.
+The repository serves as a practical portfolio showcasing hands-on experience in identifying, validating, documenting, and mitigating common web application and infrastructure vulnerabilities while following ethical hacking principles and responsible security practices.
 
 ---
 
-# Skills Demonstrated
+## Skills Demonstrated
 
-- Penetration Testing
-- Web Application Security
-- API Security
-- Authentication Testing
-- Authorization Testing
-- JWT Security
-- Linux Privilege Escalation
-- Enumeration
-- Vulnerability Assessment
-- Security Misconfiguration Analysis
-- Access Control Testing
-- Cryptographic Security Analysis
-- Command Line Tooling
-- Security Documentation
-- OWASP Top 10 Analysis
-
+* Penetration Testing
+* Web Application Security
+* API Security
+* Authentication Testing
+* Authorization Testing
+* Access Control Testing
+* Reconnaissance
+* Content Discovery
+* Directory Enumeration
+* Subdomain Enumeration
+* OSINT
+* Web Fingerprinting
+* Vulnerability Assessment
+* Vulnerability Validation
+* Exploitation
+* Insecure Direct Object Reference (IDOR)
+* Authentication Bypass
+* File Inclusion Testing (LFI/RFI)
+* Directory Traversal
+* JWT Security Analysis
+* Cryptographic Security Analysis
+* Linux Enumeration
+* Linux Privilege Escalation
+* HTTP Protocol Analysis
+* Cookie Security Testing
+* Burp Suite Testing
+* Command Line Tooling
+* Security Documentation
+* OWASP Top 10 Analysis
 
 ---
 
@@ -52,24 +56,24 @@ Hands-on API security assessments focusing on secure authentication, authorizati
 
 ### Topics Covered
 
-- JWT Authentication
-- Signature Verification
-- Algorithm Confusion
-- None Algorithm Attacks
-- JWT Header Manipulation
-- Claims Validation
-- Token Expiration
-- Secret Discovery
-- Cross-Service Relay Attacks
-- API Authorization Testing
+* JWT Authentication
+* Signature Verification
+* Algorithm Confusion
+* None Algorithm Attacks
+* JWT Header Manipulation
+* Claims Validation
+* Token Expiration
+* Secret Discovery
+* Cross-Service Relay Attacks
+* API Authorization Testing
 
 **Skills**
 
-- API Security Testing
-- JWT Analysis
-- Burp Suite
-- Linux CLI
-- Authentication Testing
+* API Security Testing
+* JWT Analysis
+* Burp Suite
+* Linux CLI
+* Authentication Testing
 
 ---
 
@@ -79,206 +83,370 @@ Practical projects exploring common weaknesses in JSON Web Tokens.
 
 ### Topics
 
-- JWT Structure
-- Header Manipulation
-- Weak Secrets
-- Signature Bypass
-- Token Forgery
-- Key Confusion
-- Authorization Abuse
+* JWT Structure
+* Header Manipulation
+* Weak Secrets
+* Signature Bypass
+* Token Forgery
+* Key Confusion
+* Authorization Abuse
 
 ---
 
 ## Linux Privilege Escalation
 
-Collection of privilege escalation techniques performed on Linux systems.
+Collection of Linux privilege escalation techniques performed within authorized lab environments.
 
 ### Topics
 
-- Enumeration
-- SUID Binaries
-- Cron Jobs
-- PATH Hijacking
-- Capabilities
-- Writable Files
-- Misconfigurations
-- Root Escalation
+* Enumeration
+* SUID Binaries
+* Cron Jobs
+* PATH Hijacking
+* Linux Capabilities
+* Writable Files
+* Scheduled Tasks
+* Misconfigurations
+* Root Escalation
 
 **Tools**
 
-- LinPEAS
-- Linux CLI
-- GTFOBins
-- Find
-- Bash
+* LinPEAS
+* GTFOBins
+* Bash
+* Find
+* Linux CLI
 
 ---
 
 ## Net Sec Challenge (TryHackMe)
 
-Network security exercises covering system enumeration and service exploitation.
+Network security exercises covering host enumeration, service identification, and exploitation.
 
 ### Skills
 
-- Enumeration
-- Service Discovery
-- FTP
-- SMB
-- HTTP
-- SSH
-- File Analysis
-- Password Discovery
+* Service Enumeration
+* Port Scanning
+* FTP
+* SMB
+* HTTP
+* SSH
+* File Analysis
+* Password Discovery
 
 ---
 
-# OWASP Top 10 Projects (2025)
+## Content Discovery
 
-Hands-on security projects based on the OWASP Top 10 (2025).
+Hands-on reconnaissance project focused on discovering hidden web application content through manual analysis, OSINT, and automated enumeration.
+
+### Topics
+
+* Robots.txt Analysis
+* Sitemap Enumeration
+* HTTP Header Enumeration
+* Favicon Fingerprinting
+* Framework Discovery
+* Google Dorking
+* Wayback Machine
+* Public Repository Enumeration
+* Cloud Storage Discovery
+* Directory Enumeration
+
+**Tools**
+
+* Gobuster
+* FFUF
+* DIRB
+* cURL
+* SecLists
+* Wappalyzer
+* GitHub
+* Google Dorking
+* Wayback Machine
+
+---
+
+## Subdomain Enumeration
+
+Practical reconnaissance exercises focused on expanding attack surface through subdomain discovery.
+
+### Topics
+
+* Certificate Transparency Logs
+* DNS Enumeration
+* DNS Bruteforcing
+* Search Engine Enumeration
+* Virtual Host Discovery
+* Passive OSINT
+* Active Enumeration
+
+**Tools**
+
+* DNSRecon
+* Sublist3r
+* FFUF
+* crt.sh
+* Google Search
+* SecLists
+
+---
+
+## Authentication Bypass
+
+Projects demonstrating common authentication weaknesses and techniques used to identify insecure authentication implementations.
+
+### Topics
+
+* Username Enumeration
+* Password Brute Force
+* Authentication Logic Flaws
+* Password Reset Abuse
+* Cookie Tampering
+* Session Manipulation
+* Base64 Encoding
+* MD5 Hash Analysis
+
+**Tools**
+
+* FFUF
+* cURL
+* Burp Suite
+* CrackStation
+* Browser Developer Tools
+
+---
+
+## IDOR (Insecure Direct Object Reference)
+
+Practical access control assessments demonstrating how insecure object references expose unauthorized resources.
+
+### Topics
+
+* Parameter Manipulation
+* Encoded IDs
+* Hashed IDs
+* JSON API Enumeration
+* API Endpoint Testing
+* Horizontal Privilege Escalation
+* Access Control Validation
+
+**Tools**
+
+* Burp Suite
+* Browser Developer Tools
+* cURL
+* Base64 Utilities
+
+---
+
+## File Inclusion
+
+Practical web application security projects covering Local File Inclusion (LFI), Remote File Inclusion (RFI), and Directory Traversal vulnerabilities.
+
+### Topics
+
+* Local File Inclusion (LFI)
+* Remote File Inclusion (RFI)
+* Directory Traversal
+* Path Traversal
+* PHP Include Functions
+* Null Byte Injection
+* Filter Bypass
+* Remote Code Execution
+* File Disclosure
+
+**Tools**
+
+* Burp Suite
+* cURL
+* Browser Developer Tools
+* PHP
+* HTTP Requests
+
+---
+
+# OWASP Top 10 (2025) Coverage
+
+This repository contains practical projects aligned with multiple categories from the OWASP Top 10 (2025).
 
 ---
 
 ## A01 — Broken Access Control
 
-Covered through multiple API and authorization testing projects.
+Projects include:
 
-Topics include:
-
-- IDOR
-- Forced Browsing
-- Privilege Escalation
-- Missing Authorization Checks
-- Horizontal Privilege Escalation
-- Vertical Privilege Escalation
+* IDOR
+* Forced Browsing
+* Authorization Bypass
+* Horizontal Privilege Escalation
+* Vertical Privilege Escalation
+* Missing Authorization Checks
+* Access Control Validation
 
 ---
 
 ## A02 — Cryptographic Failures
 
-Practical demonstrations involving insecure cryptographic implementations.
+Projects include:
 
-Topics include:
-
-- Weak Password Hashing
-- Plaintext Storage
-- Weak Algorithms
-- Missing Encryption
-- Secret Exposure
-- Key Management Issues
-
----
-
-## A07 — Identification & Authentication Failures (IAAA)
-
-Focused on weaknesses affecting authentication systems.
-
-Topics include:
-
-- Weak Authentication
-- Session Management
-- MFA Weaknesses
-- Credential Attacks
-- Password Security
-- Session Hijacking
+* Weak Password Hashes
+* MD5 Analysis
+* Base64 Encoding
+* Secret Exposure
+* Weak Cryptographic Implementations
+* Missing Encryption
+* Key Management Issues
 
 ---
 
-## A09 — Security Logging & Monitoring Failures (IAAA)
+## A04 — Insecure Design
 
-Analysis of insufficient logging and monitoring practices.
+Projects include:
 
-Topics include:
-
-- Missing Audit Logs
-- Detection Failures
-- Incident Response Gaps
-- Monitoring Weaknesses
-- Alerting Issues
+* Authentication Logic Flaws
+* Password Reset Abuse
+* Business Logic Weaknesses
+* Security Design Analysis
 
 ---
 
-# Methodology
+## A05 — Security Misconfiguration
 
-Projects generally follow the penetration testing lifecycle:
+Projects include:
+
+* Information Disclosure
+* Default Administrative Interfaces
+* Framework Fingerprinting
+* HTTP Header Enumeration
+* Exposed Configuration Files
+
+---
+
+## A07 — Identification & Authentication Failures
+
+Projects include:
+
+* Username Enumeration
+* Password Brute Force
+* Authentication Bypass
+* Cookie Tampering
+* Session Management Weaknesses
+* Credential Attacks
+
+---
+
+## A09 — Security Logging & Monitoring Failures
+
+Projects include:
+
+* Security Analysis
+* Detection Considerations
+* Monitoring Recommendations
+* Incident Response Improvements
+
+---
+
+# Penetration Testing Methodology
+
+Most projects follow a structured assessment workflow:
 
 1. Reconnaissance
-2. Enumeration
-3. Vulnerability Identification
-4. Exploitation
-5. Privilege Escalation
-6. Post-Exploitation
-7. Security Assessment
-8. Mitigation Recommendations
-9. Documentation
+2. Information Gathering
+3. Attack Surface Mapping
+4. Enumeration
+5. Vulnerability Identification
+6. Exploitation
+7. Validation
+8. Security Impact Assessment
+9. Mitigation Recommendations
+10. Documentation
 
 ---
 
-# Tools Used
+# Tools & Technologies
 
-- Burp Suite
-- OWASP ZAP
-- Nmap
-- Gobuster
-- Curl
-- FFUF
-- JWT Toolkit
-- CyberChef
-- Linux CLI
-- OpenSSL
-- LinPEAS
-- GTFOBins
-- Wireshark
+* Burp Suite
+* OWASP ZAP
+* Nmap
+* Gobuster
+* FFUF
+* DIRB
+* DNSRecon
+* Sublist3r
+* cURL
+* SecLists
+* Wappalyzer
+* CyberChef
+* JWT Toolkit
+* OpenSSL
+* LinPEAS
+* GTFOBins
+* Wireshark
+* Browser Developer Tools
+* CrackStation
+* Wayback Machine
+* crt.sh
+* GitHub
+* Google Dorking
 
 ---
 
 # Documentation Standards
 
-Each project includes:
+Each project is documented using a consistent professional structure and typically includes:
 
-- Project Overview
-- Objectives
-- Lab Environment
-- Methodology
-- Reconnaissance
-- Enumeration
-- Exploitation Steps
-- Evidence
-- Findings
-- Security Impact
-- Mitigation Recommendations
-- Key Takeaways
+* Project Overview
+* Disclaimer
+* Objectives
+* Skills Learned
+* Tools & Technologies
+* Methodology
+* Commands Used
+* Findings
+* Security Impact
+* Recommendations
+* Lessons Learned
+* Outcome
 
 ---
 
 # Ethical Notice
 
-All demonstrations contained within this repository were performed exclusively in authorized environments, including:
+All demonstrations documented within this repository were performed exclusively inside authorized environments, including:
 
-- TryHackMe Labs
-- Personal Virtual Machines
-- Local Practice Environments
-- Deliberately Vulnerable Applications
-- Training Platforms
+* TryHackMe Labs
+* Capture The Flag (CTF) Platforms
+* Local Virtual Machines
+* Personal Practice Labs
+* Deliberately Vulnerable Applications
+* Educational Security Platforms
 
-No testing was conducted against unauthorized systems.
+No testing was performed against systems without authorization.
 
 ---
 
 # Learning Goals
 
-This repository serves as a record of my continuous learning journey in:
+This repository documents my continuous growth in:
 
-- Offensive Security
-- Penetration Testing
-- API Security
-- Web Application Security
-- Authentication Testing
-- Vulnerability Assessment
-- Secure Development Practices
+* Offensive Security
+* Ethical Hacking
+* Penetration Testing
+* Web Application Security
+* API Security
+* Authentication & Authorization Testing
+* Vulnerability Research
+* Secure Development Practices
+* Security Engineering
+* Professional Security Documentation
 
 ---
 
 ## Connect
 
-I am continually expanding this repository with new penetration testing labs, vulnerability assessments, and offensive security projects as I progress in my cybersecurity journey.
+This repository continues to grow as I complete additional penetration testing labs, web application assessments, security research, and offensive security projects.
 
-⭐ If you find these projects useful, feel free to explore the repository and follow my progress.
+Each project reflects practical, hands-on experience while emphasizing responsible disclosure, ethical hacking, and industry best practices.
+
+⭐ If you find these projects helpful, feel free to explore the repository and follow my cybersecurity journey.
